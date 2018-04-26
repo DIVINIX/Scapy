@@ -26,26 +26,41 @@ Dans le cas où le port est ouvert le message est transmis et la machine émettr
 
 Afin de mettre en avant le principe d'une connexion UDP, on peut par exemple utiliser la commande `nmap`. Nmap est un scanner de port. Il permet notamment de déterminer si un port est ouvert ou non.
 
-Avec cette commande je vais donc tester l'ouverture d'un port sur différentes cibles. Dans un premier temps je vais tester l'ouverture du prot TCP/UDP 991 chez Google.
+Avec cette commande je vais donc tester l'ouverture d'un port sur différentes cibles. Dans un premier temps je vais tester l'ouverture du prot TCP/UDP 991 chez Google avec la commande suivante :
 
 ```bash
 sudo nmap -sU google.fr -p 991
 ```
 
-Reference-style:
-![alt text][udp_open]
+Le résultat de la commande est le suivant :
 
-[udp_open]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_open.PNG "UDP port open"
+![alt text][udp_open_nmap]
 
+[udp_open_nmap]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_open_nmap.PNG "UDP port open nmap"
+
+On remarque bien que le port est ouvert, c'est la ligne `991/udp open|filtered unknown` qui le confirme. De plus on peut vérifier le rédoulement de la connexion dans wireshark et on voit bien que les paquete son bien été envoyé.
+
+![alt text][udp_open_wireshark]
+
+[udp_open_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_open_nmap.PNG "UDP port open wireshark"
+
+Dans un second temps je vais tester le même port mais sur la machine virtuelle victime. La commande est la même, seul l'adresse cible change :
 
 ```bash
 sudo nmap -sU 192.168.9.133 -p 991
 ```
+Le résultat de la commande est le suivant :
 
-Reference-style:
-![alt text][udp_close]
 
-[udp_close]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_close.PNG "UDP port close"
+![alt text][udp_close_nmap]
+
+[udp_close_nmap]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_close_nmap.PNG "UDP port close nmap"
+
+Cette fois ci on remarque que le port est fermé grâce à la ligne `991/udp closed unknown`. La vérification dans Wireshark le confirme, la cible nous retourne un paquet ICMP avec le message `Port unreachable`.
+
+![alt text][udp_close_wireshark]
+
+[udp_close_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_close_nmap.PNG "UDP port close wireshark"
 
 2. TCP
 
