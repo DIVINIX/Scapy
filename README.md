@@ -78,9 +78,17 @@ L'établissement d'une connexion TCP entre deux hôtes se déroule selon un hand
 * SYN / ACK : Le serveur répond au client avec un paquet SYN / ACK (synchronized, acknowledge).
 * ACK : Pour terminer la connexion, le client envoie un paquet ACK au serveur au titre d'accusé de réception.
 
+Pour démontrer le fonctionnement de TCP et son **3 way handshake**, j'ai effectué une requête HTTP avec la commande ``curl``. 
+
 ```bash
 curl dreamzite.com -p 443
 ```
+
+Le résultat de cette commande peut être capturé dans Wireshark. On voit donc le rédoulement du **3 way handshake**.
+
+![alt text][tcp_wireshark]
+
+[tcp_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/tcp_synack_wireshark.PNG "TCP wireshark"
 
 ## Utilisation de scapy
 
@@ -103,6 +111,6 @@ visualiser en détail comment se positionnent les options._**
 forgerez vous même les trames ARP, et n'utiliserez pas les fonctions automatiques
 intégrées à Scapy. Expliquez en détail comment vous avez fait._**
 
-    1. Forger quelques trames ARP
-    2. Expliquer la technique de ARP cache poisonning
-    3. Monter une attaque ARP cache poisonning
+1. Forger quelques trames ARP
+2. Expliquer la technique de ARP cache poisonning
+3. Monter une attaque ARP cache poisonning
