@@ -10,9 +10,9 @@ Le but du TP est de de nous faire prendre conscience de ce que l'on peut voir et
 
 ## Rappel théoriques sur TCP/IP
 
-**Expliquez en détail le fonctionnement d'une connexion sur un port UDP. Illustrez vos propos en
+**_Expliquez en détail le fonctionnement d'une connexion sur un port UDP. Illustrez vos propos en
 capturant les trames émises lors d'une requête DNS. Vous pourrez par exemple utiliser la
-commande nslookup.**
+commande nslookup._**
 
 Le protocole UDP est un protocole orienté transaction et non connexion. Lors de l'utilisation du protocole UDP, les données sont envoyées sans établir de connexion avec le récepteur. UDP ne peut donc garantir que les données vont arriver. Cependant cela permet de transmettre des données de façon très simple. On envoi et c'est tout, on ne s'occupe pas de savoir si c'est bien arrivé.
 
@@ -28,10 +28,10 @@ sudo nmap -sU 192.168.9.133 -p 991
 sudo nmap -sU google.fr -p 991
 ```
 
-**Expliquer en détail le fonctionnement d'une connexion sur un port TCP. Illustrez vos propos en
+**_Expliquer en détail le fonctionnement d'une connexion sur un port TCP. Illustrez vos propos en
 capturant les trames émises lors d'une requête HTTP sur un site de votre choix. Pour cela vous
 ne devrez pas passer par votre navigateur Web. Donnez le détail de la(es) commande(s) que
-vous avez utilisé pour cette requête.**
+vous avez utilisé pour cette requête._**
 
 Le protocole TCP est un protocole orienté connexion et non transaction. Ce protocole de transport est bien plus fiable que UDP. Dans le modèle OSI le protocole TCP correspond à la couche de transport.
 
