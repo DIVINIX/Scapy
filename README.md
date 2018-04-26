@@ -44,6 +44,10 @@ L'établissement d'une connexion TCP entre deux hôtes se déroule selon un hand
 * SYN / ACK : Le serveur répond au client avec un paquet SYN / ACK (synchronized, acknowledge).
 * ACK : Pour terminer la connexion, le client envoie un paquet ACK au serveur au titre d'accusé de réception.
 
+```bash
+curl dreamzite.com -p 443
+```
+
 
 Reference-style:
 ![alt text][ping]
