@@ -29,7 +29,7 @@ sudo nmap -sU 192.168.9.133 -p 991
 Reference-style:
 ![alt text][udp_open]
 
-[udp_open]: https://github.com/DIVINIX/Scapy/blob/master/udp_open.PNG "UDP port open"
+[udp_open]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_open.PNG "UDP port open"
 
 ```bash
 sudo nmap -sU google.fr -p 991
@@ -39,7 +39,7 @@ sudo nmap -sU google.fr -p 991
 Reference-style:
 ![alt text][udp_close]
 
-[udp_close]: https://github.com/DIVINIX/Scapy/blob/master/udp_close.PNG "UDP port close"
+[udp_close]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_close.PNG "UDP port close"
 
 **_Expliquer en détail le fonctionnement d'une connexion sur un port TCP. Illustrez vos propos en
 capturant les trames émises lors d'une requête HTTP sur un site de votre choix. Pour cela vous
@@ -62,4 +62,4 @@ curl dreamzite.com -p 443
 Reference-style:
 ![alt text][tcp_wireshark]
 
-[tcp_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/wireshark_synack_TCP.PNG "TCP Wireshark"
+[tcp_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/wireshark_synack_TCP.PNG "TCP Wireshark"
