@@ -82,7 +82,27 @@ L'établissement d'une connexion TCP entre deux hôtes se déroule selon un hand
 curl dreamzite.com -p 443
 ```
 
-Reference-style:
-![alt text][tcp_wireshark]
+## Utilisation de scapy
 
-[tcp_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/wireshark_synack_TCP.PNG "TCP Wireshark"
+1. Découverte de l'outil
+
+**_Suivez le tutoriel offciel pour prendre en main l'outil. Concentrez vous uniquement sur les
+paragraphes suivants de la partie usage3 , tout le paragraphe Interactive tutorial jusqu'à
+Send and receive in a loop inclu. Pour tester, forgez quelques paquets, capturez les trames
+et observez le résultat. Décrivez vos manipulations._**
+
+2. Réalisation d'une connexion TCP
+
+**_Vous forgerez des trames TCP afin de réaliser de bout en bout une connexion 3
+Way handshake. Pour cela vous pourrez capturer une connexion TCP pour
+visualiser en détail comment se positionnent les options._**
+
+3. ARP cache poisonning
+
+**_Tentez de monter cette attaque contre une de vos machines. Pour cela vous
+forgerez vous même les trames ARP, et n'utiliserez pas les fonctions automatiques
+intégrées à Scapy. Expliquez en détail comment vous avez fait._**
+
+  3.1 Forger quelques trames ARP
+  3.2 Expliquer la technique de ARP cache poisonning
+  3.3 Monter une attaque ARP cache poisonning
