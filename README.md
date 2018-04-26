@@ -6,7 +6,9 @@ L'objectif de ce TP est d'approfondir nos connaissances sur le comportement des 
 
 Le but du TP est de de nous faire prendre conscience de ce que l'on peut voir et faire au niveau des couches 2, 3 et 4.
 
-## Environnement
+## Environnement de travail
+
+L'environnement de travail est composé
 
 ## Rappel théoriques sur TCP/IP
 
