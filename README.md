@@ -103,6 +103,6 @@ visualiser en détail comment se positionnent les options._**
 forgerez vous même les trames ARP, et n'utiliserez pas les fonctions automatiques
 intégrées à Scapy. Expliquez en détail comment vous avez fait._**
 
-  3.1 Forger quelques trames ARP
-  3.2 Expliquer la technique de ARP cache poisonning
-  3.3 Monter une attaque ARP cache poisonning
+  1. Forger quelques trames ARP
+  2. Expliquer la technique de ARP cache poisonning
+  3. Monter une attaque ARP cache poisonning
