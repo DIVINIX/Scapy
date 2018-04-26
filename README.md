@@ -24,8 +24,12 @@ Lors d'une communication UDP entre deux machines, les entités sont définies pa
 
 Dans le cas où le port est ouvert le message est transmis et la machine émettrice ne reçoit aucun retour, cela veut dire que la connexion a été établie. Dans le cas contraire, si le port est fermé la machine émettrice reçoit un paquet ICMP contenant le message d'erreur.
 
+Afin de mettre en avant le principe d'une connexion UDP, on peut par exemple utiliser la commande `nmap`. Nmap est un scanner de port. Il permet notamment de déterminer si un port est ouvert ou non.
+
+Avec cette commande je vais donc tester l'ouverture d'un port sur différentes cibles. Dans un premier temps je vais tester l'ouverture du prot TCP/UDP 991 chez Google.
+
 ```bash
-sudo nmap -sU 192.168.9.133 -p 991
+sudo nmap -sU google.fr -p 991
 ```
 
 Reference-style:
@@ -33,10 +37,10 @@ Reference-style:
 
 [udp_open]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_open.PNG "UDP port open"
 
-```bash
-sudo nmap -sU google.fr -p 991
-```
 
+```bash
+sudo nmap -sU 192.168.9.133 -p 991
+```
 
 Reference-style:
 ![alt text][udp_close]
