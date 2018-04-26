@@ -42,7 +42,7 @@ On remarque bien que le port est ouvert, c'est la ligne `991/udp open|filtered u
 
 ![alt text][udp_open_wireshark]
 
-[udp_open_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_open_nmap.PNG "UDP port open wireshark"
+[udp_open_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_open_wireshark.PNG "UDP port open wireshark"
 
 Dans un second temps je vais tester le même port mais sur la machine virtuelle victime. La commande est la même, seul l'adresse cible change :
 
@@ -60,7 +60,7 @@ Cette fois ci on remarque que le port est fermé grâce à la ligne `991/udp clo
 
 ![alt text][udp_close_wireshark]
 
-[udp_close_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_close_nmap.PNG "UDP port close wireshark"
+[udp_close_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_close_wireshark.PNG "UDP port close wireshark"
 
 2. TCP
 
