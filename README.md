@@ -13,6 +13,7 @@ L'environnement de travail est composé
 ## Rappel théoriques sur TCP/IP
 
 1. UDP
+
 **_Expliquez en détail le fonctionnement d'une connexion sur un port UDP. Illustrez vos propos en
 capturant les trames émises lors d'une requête DNS. Vous pourrez par exemple utiliser la
 commande nslookup._**
@@ -43,6 +44,7 @@ Reference-style:
 [udp_close]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_close.PNG "UDP port close"
 
 2. TCP
+
 **_Expliquer en détail le fonctionnement d'une connexion sur un port TCP. Illustrez vos propos en
 capturant les trames émises lors d'une requête HTTP sur un site de votre choix. Pour cela vous
 ne devrez pas passer par votre navigateur Web. Donnez le détail de la(es) commande(s) que
