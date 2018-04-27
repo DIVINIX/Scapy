@@ -15,7 +15,7 @@ L'infrastucture de travail est composée de la manière suivante :
 
 ## Rappel théoriques sur TCP/IP
 
-1. UDP
+### 1. UDP
 
 **_Expliquez en détail le fonctionnement d'une connexion sur un port UDP. Illustrez vos propos en
 capturant les trames émises lors d'une requête DNS. Vous pourrez par exemple utiliser la
@@ -65,7 +65,7 @@ Cette fois ci on remarque que le port est fermé grâce à la ligne `991/udp clo
 
 [udp_close_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_close_wireshark.PNG "UDP port close wireshark"
 
-2. TCP
+### 2. TCP
 
 **_Expliquer en détail le fonctionnement d'une connexion sur un port TCP. Illustrez vos propos en
 capturant les trames émises lors d'une requête HTTP sur un site de votre choix. Pour cela vous
@@ -95,7 +95,7 @@ Le résultat de cette commande peut être capturé dans Wireshark. On voit donc 
 
 ## Utilisation de scapy
 
-1. Découverte de l'outil
+### 1. Découverte de l'outil
 
 **_Suivez le tutoriel offciel pour prendre en main l'outil. Concentrez vous uniquement sur les
 paragraphes suivants de la partie usage3 , tout le paragraphe Interactive tutorial jusqu'à
@@ -104,7 +104,7 @@ et observez le résultat. Décrivez vos manipulations._**
 
 Les parties antérieures à la génération de paquets sont très basiques. Je ne les expliquerais donc pas dans les manipulations pour la découverte de scapy.
 
-  1. Generating sets of packets
+#### a. Generating sets of packets
   
 Scapy permet la génération de plusieurs paquets très facilement. Ci-dessous se trouve le résultat de la génération de paqueets :
 
@@ -114,7 +114,7 @@ Scapy permet la génération de plusieurs paquets très facilement. Ci-dessous s
 
 L'un des avantages est de pouvoir forger un certain nombre de paquets de manière automatique. Par exemple ici l'idée était de forger des paquets TCP de différents ports pour différentes adresses. Dans un premier temps récupère les adresses IP de la cilbe. Ensuite on créer une trame TCP pour les ports 80 et 443. Pour finir on génère automatiquement les paquets associés aux IP et aux ports TCP. Cela nous donne des paquets de la forme : Adresse IP 1 + Port 80 | Adresse IP 1 + Port 443 | Adresse IP 2 + Port 80 | Adresse IP 2 + Port 443 [...]. Pour chaque adresse IP on lui associe un des deux ports de la trame TCP.
 
-  2. Send and receive packets (sr)
+#### b. Send and receive packets (sr)
   
 Les commandes `send()` et `sendp()` ne permettent pas de récupérer de retour, en effet elles ne servent qu'à envoyer. C'est pourquoi il existe des commandes comme `srp()`, `sr` et `sr1()` qui retournent des paquetes. Les deux premières fonction retourne deux objets, le premier contient les paquets émis et leur réponses et l'autre paquet contient les paquetes sans réponse. La commande `sr1()` ne retourne que les paquets émis.
 
@@ -128,7 +128,7 @@ Le résultat est le suivant :
 
 On voit bien que le paquet a été envoyé et qu'une réponse nous est retournée.
 
-  3. SYN Scans
+#### c. SYN Scans
 
 Scapy permet entre autre de scanner un port afin de savoir s'il est ouvert. Le principe est simple, on envoi un paquet SYN sur un port pour connaitre son état. Cette opération peut être réaliser à l'aide de la commande suivante : `sr1(IP(dst="google .fr")/TCP(dport=80,flags="S"))`
 
@@ -140,7 +140,7 @@ Le résultat est le suivant :
 
 Le retour nous montre bien qu'un paquet avec un flag **SY** pour Syn-Ack nous est renvoyé. Cela veut dire que le port est bien ouvert.
 
-  4. Sniff and filters
+#### d. Sniff and filters
   
 Il est possible d'écouter ce qui se passe sur le réseau. Grâce au `sniff()` de Scapy on peut par exmple savoir les paquetes qui ont été échangé sur le réseau. Il est intéréssant d'associer le `sniff()` avec des filtres.
 Par exemple j'ai lancé le sniff avec comme filtre l'IP de l'attaquant grâce à la commande suiante : `sniff(filter="icmp and host 192.168.9.132", count=2)`. Ensuite j'ai simplement effectué un **ping** sur l'attaquant.
@@ -154,7 +154,7 @@ Le résultat est le suivant :
 
 On voit bien que deux paquets on été sniffé par Scapy.
 
-2. Réalisation d'une connexion TCP
+### 2. Réalisation d'une connexion TCP
 
 **_Vous forgerez des trames TCP afin de réaliser de bout en bout une connexion 3
 Way handshake. Pour cela vous pourrez capturer une connexion TCP pour
@@ -188,13 +188,13 @@ Il est aussi posible de voir le même déroulement sur Wireshark :
 
 On remarque bien les trames TCP **SYN** et **ACK** envoyé par la source à la cible. Il manque juste la réponse de la cible dû à un problème de filtre.
 
-3. ARP cache poisonning
+### 3. ARP cache poisonning
 
 **_Tentez de monter cette attaque contre une de vos machines. Pour cela vous
 forgerez vous même les trames ARP, et n'utiliserez pas les fonctions automatiques
 intégrées à Scapy. Expliquez en détail comment vous avez fait._**
 
-1. Forger quelques trames ARP
+#### a. Forger quelques trames ARP
 
 Le principe du protocole **ARP** est de retrouver une adresse **MAC** à partir d'une adresse **IPV4**. Scapy nous permet de le faire très simplement. Il y a différentes façons de le faire. Ci-dessous se trouve deux façons différentes, la première consiste en une simple trame ARP et la seconde ressemble beaucoup à la première mais la trame comporte une aprtie Ethernet en plus.
 
@@ -225,5 +225,5 @@ Le résultat de l'exécution du script est le suivant :
 
 On voit bien que la résulution d'adresse a bien foncitonné. La machine cible a bien pour adresse `08:00:27:5a:52:a1`, la deuxième cible est la machine hôte des machines virtuelles.
 
-2. Expliquer la technique de ARP cache poisonning
-3. Monter une attaque ARP cache poisonning
+#### b. Expliquer la technique de ARP cache poisonning
+#### c. Monter une attaque ARP cache poisonning
