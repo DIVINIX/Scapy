@@ -99,8 +99,17 @@ paragraphes suivants de la partie usage3 , tout le paragraphe Interactive tutori
 Send and receive in a loop inclu. Pour tester, forgez quelques paquets, capturez les trames
 et observez le résultat. Décrivez vos manipulations._**
 
-a. Test
-b. Tests
+Les parties antérieures à la génération de paquets sont très basiques. Je ne les expliquerais donc pas dans les manipulations pour la découverte de scapy.
+
+  1. Generating sets of packets
+  
+Scapy permet la génération de plusieurs paquets très facilement. Ci-dessous se trouve le résultat de la génération de paqueets :
+
+![alt text][set_packets]
+
+[set_packets]: https://github.com/DIVINIX/Scapy/blob/master/Images/set_packets.PNG "Generating paquets"
+
+L'un des avantages est de pouvoir forger un certain nombre de paquets de manière automatique. Par exemple ici l'idée était de forger des paquets TCP de différents ports pour différentes adresses. Dans un premier temps récupère les adresses IP de la cilbe. Ensuite on créer une trame TCP pour les ports 80 et 443. Pour finir on génère automatiquement les paquets associés aux IP et aux ports TCP. Cela nous donne des paquets de la forme : Adresse IP 1 + Port 80 | Adresse IP 1 + Port 443 | Adresse IP 2 + Port 80 | Adresse IP 2 + Port 443 [...]. Pour chaque adresse IP on lui associe un des deux ports de la trame TCP.
 
 2. Réalisation d'une connexion TCP
 
