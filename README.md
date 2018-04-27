@@ -8,12 +8,12 @@ Le but du TP est de de nous faire prendre conscience de ce que l'on peut voir et
 
 ## Infrastructure de travail
 
-L'infrastucture de travail est composée de la manière suivante :
+L'infrastructure  de travail est composée de la manière suivante :
 * Une machine hôte d'IP `192.168.8.53` sous Windows
 * Une machine attaquant d'IP `192.168.9.132` et d'adresse MAC `08:00:27:9f:ae:7e` sous Ubuntu Server 16.04
 * Une machine cible d'IP `192.168.9.133` et d'adresse MAC `08:00:27:5a:52:a1` sous Ubuntu Server 16.04
 
-## Rappel théoriques sur TCP/IP
+## Rappels théoriques sur TCP/IP
 
 ### 1. UDP
 
@@ -29,7 +29,7 @@ Dans le cas où le port est ouvert le message est transmis et la machine émettr
 
 Afin de mettre en avant le principe d'une connexion UDP, on peut par exemple utiliser la commande `nmap`. Nmap est un scanner de port. Il permet notamment de déterminer si un port est ouvert ou non.
 
-Avec cette commande je vais donc tester l'ouverture d'un port sur différentes cibles. Dans un premier temps je vais tester l'ouverture du prot TCP/UDP 991 chez Google avec la commande suivante :
+Avec cette commande je vais donc tester l'ouverture d'un port sur différentes cibles. Dans un premier temps je vais tester l'ouverture du port TCP/UDP 991 chez Google avec la commande suivante :
 
 ```console
 sudo nmap -sU google.fr -p 991
@@ -41,7 +41,7 @@ Le résultat de la commande est le suivant :
 
 [udp_open_nmap]: https://github.com/DIVINIX/Scapy/blob/master/Images/udp_open_nmap.PNG "UDP port open nmap"
 
-On remarque bien que le port est ouvert, c'est la ligne `991/udp open|filtered unknown` qui le confirme. De plus on peut vérifier le rédoulement de la connexion dans wireshark et on voit bien que les paquete son bien été envoyé.
+On remarque bien que le port est ouvert, c'est la ligne `991/udp open|filtered unknown` qui le confirme. De plus on peut vérifier le déroulement de la connexion dans **Wireshark** et on voit bien que les paquetes ont bien été envoyé.
 
 ![alt text][udp_open_wireshark]
 
@@ -74,7 +74,7 @@ vous avez utilisé pour cette requête._**
 
 Le protocole TCP est un protocole orienté connexion et non transaction. Ce protocole de transport est bien plus fiable que UDP. Dans le modèle OSI le protocole TCP correspond à la couche de transport.
 
-La connexion TCP se déroule en trois phases. La première est l'établissement de la connexion. La seconde est le transferts de données et la dernière est la fin de la connexion. Par rapport à UDP le transport des données est fiable et de nombreux mécanismes permettent de garantir le bon déroulement du transfert ou alors de connaitre la cause des problèmes.
+La connexion TCP se déroule en trois phases. La première est l'établissement de la connexion. La seconde est le transfert de données et la dernière est la fin de la connexion. Par rapport à UDP le transport des données est fiable et de nombreux mécanismes permettent de garantir le bon déroulement du transfert ou alors de connaitre la cause des problèmes.
 
 L'établissement d'une connexion TCP entre deux hôtes se déroule selon un handshaking en trois temps. Le 3 Way Handshake. Ce dernier se déroule donc en trois phases :
 * SYN : Afin d'établir une connexion, le client envoie un paquet SYN (synchronized) au serveur.
@@ -87,7 +87,7 @@ Pour démontrer le fonctionnement de TCP et son **3 Way Wandshake**, j'ai effect
 curl dreamzite.com -p 443
 ```
 
-Le résultat de cette commande peut être capturé dans Wireshark. On voit donc le rédoulement du **3 Way Handshake**.
+Le résultat de cette commande peut être capturé dans Wireshark. On voit donc le déroulement du **3 Way Handshake**.
 
 ![alt text][tcp_wireshark]
 
@@ -97,8 +97,8 @@ Le résultat de cette commande peut être capturé dans Wireshark. On voit donc 
 
 ### 1. Découverte de l'outil
 
-**_Suivez le tutoriel offciel pour prendre en main l'outil. Concentrez vous uniquement sur les
-paragraphes suivants de la partie usage3 , tout le paragraphe Interactive tutorial jusqu'à
+**_Suivez le tutoriel officiel pour prendre en main l'outil. Concentrez-vous uniquement sur les
+paragraphes suivants de la partie usage, tout le paragraphe Interactive tutorial jusqu'à
 Send and receive in a loop inclu. Pour tester, forgez quelques paquets, capturez les trames
 et observez le résultat. Décrivez vos manipulations._**
 
@@ -106,17 +106,17 @@ Les parties antérieures à la génération de paquets sont très basiques. Je n
 
 #### a. Generating sets of packets
   
-Scapy permet la génération de plusieurs paquets très facilement. Ci-dessous se trouve le résultat de la génération de paqueets :
+Scapy permet la génération de plusieurs paquets très facilement. Ci-dessous se trouve le résultat de la génération de paquets :
 
 ![alt text][set_packets]
 
 [set_packets]: https://github.com/DIVINIX/Scapy/blob/master/Images/set_packets.PNG "Generating packets"
 
-L'un des avantages est de pouvoir forger un certain nombre de paquets de manière automatique. Par exemple ici l'idée était de forger des paquets TCP de différents ports pour différentes adresses. Dans un premier temps récupère les adresses IP de la cilbe. Ensuite on créer une trame TCP pour les ports 80 et 443. Pour finir on génère automatiquement les paquets associés aux IP et aux ports TCP. Cela nous donne des paquets de la forme : Adresse IP 1 + Port 80 | Adresse IP 1 + Port 443 | Adresse IP 2 + Port 80 | Adresse IP 2 + Port 443 [...]. Pour chaque adresse IP on lui associe un des deux ports de la trame TCP.
+L'un des avantages est de pouvoir forger un certain nombre de paquets de manière automatique. Par exemple ici l'idée était de forger des paquets TCP de différents ports pour différentes adresses. Dans un premier temps récupère les adresses IP de la cible. Ensuite on créer une trame TCP pour les ports 80 et 443. Pour finir on génère automatiquement les paquets associés aux IP et aux ports TCP. Cela nous donne des paquets de la forme : Adresse IP 1 + Port 80 | Adresse IP 1 + Port 443 | Adresse IP 2 + Port 80 | Adresse IP 2 + Port 443 [...]. Pour chaque adresse IP on lui associe un des deux ports de la trame TCP.
 
 #### b. Send and receive packets (sr)
   
-Les commandes `send()` et `sendp()` ne permettent pas de récupérer de retour, en effet elles ne servent qu'à envoyer. C'est pourquoi il existe des commandes comme `srp()`, `sr` et `sr1()` qui retournent des paquetes. Les deux premières fonction retourne deux objets, le premier contient les paquets émis et leur réponses et l'autre paquet contient les paquetes sans réponse. La commande `sr1()` ne retourne que les paquets émis.
+Les commandes `send()` et `sendp()` ne permettent pas de récupérer de retour, en effet elles ne servent qu'à envoyer. C'est pourquoi il existe des commandes comme `srp()`, `sr` et `sr1()` qui retournent des paquetes. Les deux premières fonctions retournent deux objets, le premier contient les paquets émis et leur réponses et l'autre paquet contient les paquets sans réponse. La commande `sr1()` ne retourne que les paquets émis.
 
 L'envoi de paquets est très simple il se fait de la manière suivante : `p = sr1(IP(dst="www.slashdot.org")/ICMP()/"XXXXXXXXXXX")`
 
@@ -130,7 +130,7 @@ On voit bien que le paquet a été envoyé et qu'une réponse nous est retourné
 
 #### c. SYN Scans
 
-Scapy permet entre autre de scanner un port afin de savoir s'il est ouvert. Le principe est simple, on envoi un paquet SYN sur un port pour connaitre son état. Cette opération peut être réaliser à l'aide de la commande suivante : `sr1(IP(dst="google .fr")/TCP(dport=80,flags="S"))`
+Scapy permet entre autres de scanner un port afin de savoir s'il est ouvert. Le principe est simple, on envoie un paquet SYN sur un port pour connaitre son état. Cette opération peut être réaliser à l'aide de la commande suivante : `sr1(IP(dst="google .fr")/TCP(dport=80,flags="S"))`
 
 Le résultat est le suivant :
 
@@ -142,8 +142,8 @@ Le retour nous montre bien qu'un paquet avec un flag **SY** pour Syn-Ack nous es
 
 #### d. Sniff and filters
   
-Il est possible d'écouter ce qui se passe sur le réseau. Grâce au `sniff()` de Scapy on peut par exmple savoir les paquetes qui ont été échangé sur le réseau. Il est intéréssant d'associer le `sniff()` avec des filtres.
-Par exemple j'ai lancé le sniff avec comme filtre l'IP de l'attaquant grâce à la commande suiante : `sniff(filter="icmp and host 192.168.9.132", count=2)`. Ensuite j'ai simplement effectué un **ping** sur l'attaquant.
+Il est possible d'écouter ce qui se passe sur le réseau. Grâce au `sniff()` de Scapy on peut par exemple savoir les paquets qui ont été échangé sur le réseau. Il est intéressant d'associer le `sniff()` avec des filtres.
+Par exemple j'ai lancé le sniff avec comme filtre l'IP de l'attaquant grâce à la commande suivante : `sniff(filter="icmp and host 192.168.9.132", count=2)`. Ensuite j'ai simplement effectué un **ping** sur l'attaquant.
 
 Le résultat est le suivant :
 
@@ -164,7 +164,7 @@ visualiser en détail comment se positionnent les options._**
 
 Dans le but d'établir une connexion TCP et de mettre en avant le **3 Way Handshake**  j'ai effectué un sniff sur des trames TCP. L'idée était donc d'avoir d'un côté des trames TCP et de l'autre de sniffer ces trames à l'aide de scapy.
 J'ai donc créé un fichier Python qui gère la création d'une trame TCP et qui gère aussi son envoi.
-Ci dessous se trouve le contenu de ce fichier python :
+Ci-dessous se trouve le contenu de ce fichier python :
 
 ```python
 #!usr/bin/env python
@@ -180,9 +180,9 @@ L'idée était donc de lancer le sniff de l'adresse cible avec scapy et ensuite 
 
 [tcp_sniff]: https://github.com/DIVINIX/Scapy/blob/master/Images/sniff_TCP.PNG "TCP sniff"
 
-On peut remarquer que la connexion **3 Way Handshake** est bien présente. Dans un premier temps la machine source d'ip '192.168.9.132' envoi une requête avec le flag "S" pour Syn. Dans un second temps la cible `54.37.226.47` lui répond avec le flag "SA" pour Syn-Ack. Enfin la source répond à la cible avec un flag "A" pour Ack.
+On peut remarquer que la connexion **3 Way Handshake** est bien présente. Dans un premier temps la machine source d'IP '192.168.9.132' envoi une requête avec le flag "S" pour Syn. Dans un second temps la cible `54.37.226.47` lui répond avec le flag "SA" pour Syn-Ack. Enfin la source répond à la cible avec un flag "A" pour Ack.
 
-Il est aussi posible de voir le même déroulement sur Wireshark :
+Il est aussi possible de voir le même déroulement sur Wireshark :
 
 ![alt text][tcp_sa]
 
@@ -198,7 +198,7 @@ intégrées à Scapy. Expliquez en détail comment vous avez fait._**
 
 #### a. Forger quelques trames ARP
 
-Le principe du protocole **ARP** est de retrouver une adresse **MAC** à partir d'une adresse **IPV4**. Scapy nous permet de le faire très simplement. Il y a différentes façons de le faire. Ci-dessous se trouve deux façons différentes, la première consiste en une simple trame ARP et la seconde ressemble beaucoup à la première mais la trame comporte une aprtie Ethernet en plus.
+Le principe du protocole **ARP** est de retrouver une adresse **MAC** à partir d'une adresse **IPV4**. Scapy nous permet de le faire très simplement. Il y a différentes façons de le faire. Ci-dessous se trouve deux façons différentes, la première consiste en une simple trame ARP et la seconde ressemble beaucoup à la première mais la trame comporte une partie Ethernet en plus.
 
 ```python
 #!usr/bin/env python
@@ -218,14 +218,14 @@ rep.show()
 
 ```
 
-Les trames sont assez simple. On définit l'adresse de la source et l'adresse cible dont on veut connaitre l'adresse MAC.
+Les trames sont assez simples. On définit l'adresse de la source et l'adresse cible dont on veut connaitre l'adresse MAC.
 Le résultat de l'exécution du script est le suivant :
 
 ![alt text][arp]
 
 [arp]: https://github.com/DIVINIX/Scapy/blob/master/Images/arp_ssh.PNG "ARP"
 
-On voit bien que la résulution d'adresse a bien foncitonné. La machine cible a bien pour adresse `08:00:27:5a:52:a1`, la deuxième cible est la machine hôte des machines virtuelles.
+On voit bien que la résolution d'adresse a bien fonctionné. La machine cible a bien pour adresse `08:00:27:5a:52:a1`, la deuxième cible est la machine hôte des machines virtuelles.
 
 #### b. Expliquer la technique de ARP cache poisonning
 #### c. Monter une attaque ARP cache poisonning
