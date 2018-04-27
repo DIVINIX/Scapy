@@ -166,5 +166,35 @@ forgerez vous même les trames ARP, et n'utiliserez pas les fonctions automatiqu
 intégrées à Scapy. Expliquez en détail comment vous avez fait._**
 
 1. Forger quelques trames ARP
+
+Le principe du protocole ARP est de retrouver une adresse MAC à partir d'une adresse IPV4. Scapy nous permet de le faire très simplement. Il y a différentes façons de le faire. Ci-dessous se trouve deux façons différentes, la première consiste en une simple trame ARP et la seconde ressemble beaucoup à la première mais la trame comporte une aprtie Ethernet en plus.
+
+```python
+#!usr/bin/env python
+from scapy.all import *
+
+print("ARP sans ethernet")                                                                                           
+rep, non_rep = sr(ARP(op=ARP.who_has, psrc="192.168.9.132", pdst="192.168.9.133"))
+rep.show()
+
+print("ARP avec ethernet sur cible")
+rep, non_rep = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(op=ARP.who_has, psrc="192.168.9.132", pdst="192.168.9.133"))
+rep.show()
+
+print("ARP avec ethernet sur dreamzite")
+rep, non_rep = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(op=ARP.who_has, psrc="192.168.9.132", pdst="192.168.8.53"))
+rep.show()
+
+```
+
+Les trames sont assez simple. On définit l'adresse de la source et l'adresse cible dont on veut connaitre l'adresse MAC.
+Le résultat de l'exécution du script est le suivant :
+
+![alt text][arp]
+
+[arp]: https://github.com/DIVINIX/Scapy/blob/master/Images/arp_ssh.PNG "ARP"
+
+On voit bien que la résulution d'adresse a bien foncitonné. La machine cible a bien pour adresse `08:00:27:5a:52:a1`, la deuxième cible est la machine hôte des machines virtuelles.
+
 2. Expliquer la technique de ARP cache poisonning
 3. Monter une attaque ARP cache poisonning
