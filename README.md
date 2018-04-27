@@ -257,7 +257,7 @@ Le principe est que l'attaquant intercepte les flux destinés aux victimes.
 
 Il existe plusieurs méthodes d'attaque ARP :
 * Le **gratuitous ARP** : Cette technique consiste à emmètre une trame ARP en **broadcast**, c'est à dire à tout le réseau. Le but est de faire correspondre son adresse MAC à celle de la passerelle.
-* Les requêtes forgées : L'utilisation de requêtes forgées consiste à envoyer une requête à la victime afin de modifier son cache ARP. Le but est de faire croire à la victime que l'adresse MAC de l'attaquant correspond à une adresse IP que l'attaquant veut usurper, par exemple l'adresse IP de la passerelle. Ainsi l'attaquant peut intercepter les communications de la victime.
+* Les **requêtes forgées** : L'utilisation de requêtes forgées consiste à envoyer une requête à la victime afin de modifier son cache ARP. Le but est de faire croire à la victime que l'adresse MAC de l'attaquant correspond à une adresse IP que l'attaquant veut usurper, par exemple l'adresse IP de la passerelle. Ainsi l'attaquant peut intercepter les communications de la victime.
 
 De plus l'ARP Cache Poinsonning fait aprtie de l'attaque **Man In The Middle** qui a pour but d'intercepter les communications entre deux machines. 
 
