@@ -180,7 +180,7 @@ visualiser en détail comment se positionnent les options._**
 
 Dans le but d'établir une connexion TCP et de mettre en avant le **3 Way Handshake**  j'ai effectué un sniff sur des trames TCP. L'idée était donc d'avoir d'un côté des trames TCP et de l'autre de sniffer ces trames à l'aide de scapy.
 J'ai donc créé un fichier Python qui gère la création d'une trame TCP et qui gère aussi son envoi.
-Ci-dessous se trouve le contenu de ce fichier python :
+Ci-dessous le contenu de ce fichier python :
 
 ```python
 #!usr/bin/env python
