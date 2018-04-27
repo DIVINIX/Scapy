@@ -244,4 +244,21 @@ Le résultat de l'exécution du script est le suivant :
 On voit bien que la résolution d'adresse a bien fonctionné. La machine cible a bien pour adresse `08:00:27:5a:52:a1`, la deuxième cible est la machine hôte des machines virtuelles.
 
 #### b. Expliquer la technique de ARP cache poisonning
+
+Pour rappel le protocole **ARP** consiste à retrouver une adresse **MAC** à partir d'une **IP**. L'**ARP Cache Poinsonning** est une technique qui consiste à envoyer de fausses informations à une machine victime pour la forcer à mettre à jour son cache ARP et détourner les flux réseaux. C'est une technique assez répandue car beaucoup de réseaux utilisent le protocole **ARP**. Elle permet d'écouter, de modifier ou encore de bloquer les paquets réseaux.
+
+Petit schéma de l'ARP Cache Poisonning :
+
+![alt text][arp_poisonning]
+
+[arp_poisonning]: https://github.com/DIVINIX/Scapy/blob/master/Images/schema_arp.PNG "ARP schema"
+
+Le principe est que l'attaquant intercepte les flux destinés aux victimes.
+
+Il existe plusieurs méthodes d'attaque ARP :
+* Le **gratuitous ARP** : Cette technique consiste à emmètre une trame ARP en **broadcast**, c'est à dire à tout le réseau. Le but est de faire correspondre son adresse MAC à celle de la passerelle.
+* Les requêtes forgées : L'utilisation de requêtes forgées consiste à envoyer une requête à la victime afin de modifier son cache ARP. Le but est de faire croire à la victime que l'adresse MAC de l'attaquant correspond à une adresse IP que l'attaquant veut usurper, par exemple l'adresse IP de la passerelle. Ainsi l'attaquant peut intercepter les communications de la victime.
+
+De plus l'ARP Cache Poinsonning fait aprtie de l'attaque **Man In The Middle** qui a pour but d'intercepter les communications entre deux machines. 
+
 #### c. Monter une attaque ARP cache poisonning
