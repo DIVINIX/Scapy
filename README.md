@@ -78,13 +78,13 @@ L'établissement d'une connexion TCP entre deux hôtes se déroule selon un hand
 * SYN / ACK : Le serveur répond au client avec un paquet SYN / ACK (synchronized, acknowledge).
 * ACK : Pour terminer la connexion, le client envoie un paquet ACK au serveur au titre d'accusé de réception.
 
-Pour démontrer le fonctionnement de TCP et son **3 way handshake**, j'ai effectué une requête HTTP avec la commande ``curl``. 
+Pour démontrer le fonctionnement de TCP et son **3 Way Wandshake**, j'ai effectué une requête HTTP avec la commande ``curl``. 
 
 ```bash
 curl dreamzite.com -p 443
 ```
 
-Le résultat de cette commande peut être capturé dans Wireshark. On voit donc le rédoulement du **3 way handshake**.
+Le résultat de cette commande peut être capturé dans Wireshark. On voit donc le rédoulement du **3 Way Handshake**.
 
 ![alt text][tcp_wireshark]
 
@@ -104,6 +104,34 @@ et observez le résultat. Décrivez vos manipulations._**
 **_Vous forgerez des trames TCP afin de réaliser de bout en bout une connexion 3
 Way handshake. Pour cela vous pourrez capturer une connexion TCP pour
 visualiser en détail comment se positionnent les options._**
+
+Dans le but d'établir une connexion TCP et de mettre en avant le **3 Way Handshake**  j'ai effectué un sniff sur des trames TCP. L'idée était donc d'avoir d'un côté des trames TCP et de l'autre de sniffer ces trames à l'aide de scapy.
+J'ai donc créé un fichier Python qui gère la création d'une trame TCP et qui gère aussi son envoi.
+Ci dessous se trouve le contenu de ce fichier python :
+
+```python
+#!usr/bin/env python
+from scapy.all import *
+
+sr1(IP(dst="dreamzite.com")/TCP(dport=443, flags="S"))
+send(IP(dst="dreamzite.com")/TCP(dport=443, flags="A"))
+```
+
+L'idée était donc de lancer le sniff de l'adresse cible avec scapy et ensuite d'exécuter le script python. La commande pour le sniff de scapy est la suivante :`sniff(filter="host 54.37.226.47", count =5)`. Au moment de l'exécution du script, le sniff étant lancé il capture naturellement les trames. Voici le résultat obtenu avec scapy :
+
+![alt text][tcp_sniff]
+
+[tcp_sniff]: https://github.com/DIVINIX/Scapy/blob/master/Images/sniff_TCP.PNG "TCP sniff"
+
+On peut remarquer que la connexion **3 Way Handshake** est bien présente. Dans un premier temps la machine source d'ip '192.168.9.132' envoi une requête avec le flag "S" pour Syn. Dans un second temps la cible `54.37.226.47` lui répond avec le flag "SA" pour Syn-Ack. Enfin la source répond à la cible avec un flag "A" pour Ack.
+
+Il est aussi posible de voir le même déroulement sur Wireshark :
+
+![alt text][tcp_sa]
+
+[tcp_sa]: https://github.com/DIVINIX/Scapy/blob/master/Images/syn_ack_TCP.PNG "TCP sa"
+
+On remarque bien les trames TCP **SYN** et **ACK** envoyé par la source à la cible. Il manque juste la réponse de la cible dû à un problème de filtre.
 
 3. ARP cache poisonning
 
