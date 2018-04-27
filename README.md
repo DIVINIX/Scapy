@@ -12,6 +12,7 @@ L'infrastructure  de travail est composée de la manière suivante :
 * Une machine hôte d'IP `192.168.8.53` sous Windows
 * Une machine attaquant d'IP `192.168.9.132` et d'adresse MAC `08:00:27:9f:ae:7e` sous Ubuntu Server 16.04
 * Une machine cible d'IP `192.168.9.133` et d'adresse MAC `08:00:27:5a:52:a1` sous Ubuntu Server 16.04
+* Le site internet `www.dreamzite.com` d'IP `54.37.226.47` appartenant à moi-même et un collègue.
 
 ## Rappels théoriques sur TCP/IP
 
@@ -93,7 +94,7 @@ Le résultat de cette commande peut être capturé dans Wireshark. On voit donc 
 
 [tcp_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/tcp_synack_wireshark.PNG "TCP wireshark"
 
-## Utilisation de scapy
+## Utilisation de Scapy
 
 ### 1. Découverte de l'outil
 
@@ -102,11 +103,11 @@ paragraphes suivants de la partie usage, tout le paragraphe Interactive tutorial
 Send and receive in a loop inclu. Pour tester, forgez quelques paquets, capturez les trames
 et observez le résultat. Décrivez vos manipulations._**
 
-Les parties antérieures à la génération de paquets sont très basiques. Je ne les expliquerais donc pas dans les manipulations pour la découverte de scapy.
+Les parties antérieures à la génération de paquets sont très basiques. Je ne les expliquerais donc pas dans les manipulations pour la découverte de Scapy.
 
 #### a. Generating sets of packets
   
-Scapy permet la génération de plusieurs paquets très facilement. Ci-dessous se trouve le résultat de la génération de paquets :
+Scapy permet facilement la génération de plusieurs paquets. Ci-dessous se trouve le résultat de la génération de paquets :
 
 ![alt text][set_packets]
 
@@ -153,8 +154,23 @@ Le résultat est le suivant :
 
 On voit bien que deux paquets on été sniffé par Scapy.
 
-
 #### e. Send and receive in a loop
+
+La fonction `srloop()` permet d'envoyer de manière continue le même paquet afind e voir si un changement apparaît. Faisons un essai avec la commande suivante : `srloop(IP(dst="www.dreamzite.com")/TCP())`
+
+Le résultat est le suivant : 
+
+![alt text][srloop_scapy]
+
+[srloop_scapy]: https://github.com/DIVINIX/Scapy/blob/master/Images/srloop_1.PNG "Srloop Scapy"
+
+Il faut arrêter la commande à la main. On voit bien que le même paquet a été envoyé 18 fois et qu'aucun changement n'est apparu. On peut également voir le déroulement de la commande avec Wireshark.
+
+![alt text][srloop_wireshark]
+
+[srloop_wireshark]: https://github.com/DIVINIX/Scapy/blob/master/Images/srloop_1.PNG "Srloop Wireshark"
+
+De la même façcon qu'avec Scapy onv oit bien les 18 paquets envoyés.
 
 ### 2. Réalisation d'une connexion TCP
 
@@ -174,7 +190,7 @@ sr1(IP(dst="dreamzite.com")/TCP(dport=443, flags="S"))
 send(IP(dst="dreamzite.com")/TCP(dport=443, flags="A"))
 ```
 
-L'idée était donc de lancer le sniff de l'adresse cible avec scapy et ensuite d'exécuter le script python. La commande pour le sniff de scapy est la suivante :`sniff(filter="host 54.37.226.47", count =5)`. Au moment de l'exécution du script, le sniff étant lancé il capture naturellement les trames. Voici le résultat obtenu avec scapy :
+L'idée était donc de lancer le sniff de l'adresse cible avec Scapy et ensuite d'exécuter le script python. La commande pour le sniff de scapy est la suivante :`sniff(filter="host 54.37.226.47", count =5)`. Au moment de l'exécution du script, le sniff étant lancé il capture naturellement les trames. Voici le résultat obtenu avec Scapy :
 
 ![alt text][tcp_sniff]
 
