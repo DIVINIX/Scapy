@@ -140,6 +140,20 @@ Le résultat est le suivant :
 
 Le retour nous montre bien qu'un paquet avec un flag **SY** pour Syn-Ack nous est renvoyé. Cela veut dire que le port est bien ouvert.
 
+  4. Sniff and filters
+  
+Il est possible d'écouter ce qui se passe sur le réseau. Grâce au `sniff()` de Scapy on peut par exmple savoir les paquetes qui ont été échangé sur le réseau. Il est intéréssant d'associer le `sniff()` avec des filtres.
+Par exemple j'ai lancé le sniff avec comme filtre l'IP de l'attaquant grâce à la commande suiante : `sniff(filter="icmp and host 192.168.9.132", count=2)`. Ensuite j'ai simplement effectué un **ping** sur l'attaquant.
+
+Le résultat est le suivant :
+
+
+![alt text][sniff_ping]
+
+[sniff_ping]: https://github.com/DIVINIX/Scapy/blob/master/Images/sniff_ping_2.PNG "Sniff ping"
+
+On voit bien que deux paquets on été sniffé par Scapy.
+
 2. Réalisation d'une connexion TCP
 
 **_Vous forgerez des trames TCP afin de réaliser de bout en bout une connexion 3
