@@ -128,6 +128,18 @@ Le résultat est le suivant :
 
 On voit bien que le paquet a été envoyé et qu'une réponse nous est retournée.
 
+  3. SYN Scans
+
+Scapy permet entre autre de scanner un port afin de savoir s'il est ouvert. Le principe est simple, on envoi un paquet SYN sur un port pour connaitre son état. Cette opération peut être réaliser à l'aide de la commande suivante : `sr1(IP(dst="google .fr")/TCP(dport=80,flags="S"))`
+
+Le résultat est le suivant :
+
+![alt text][syn_scan]
+
+[syn_scan]: https://github.com/DIVINIX/Scapy/blob/master/Images/sr_cmd.PNG "Syn Scan"
+
+Le retour nous montre bien qu'un paquet avec un flag **SY** pour Syn-Ack nous est renvoyé. Cela veut dire que le port est bien ouvert.
+
 2. Réalisation d'une connexion TCP
 
 **_Vous forgerez des trames TCP afin de réaliser de bout en bout une connexion 3
