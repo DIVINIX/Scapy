@@ -6,9 +6,12 @@ L'objectif de ce TP est d'approfondir nos connaissances sur le comportement des 
 
 Le but du TP est de de nous faire prendre conscience de ce que l'on peut voir et faire au niveau des couches 2, 3 et 4.
 
-## Environnement de travail
+## Infrastructure de travail
 
-L'environnement de travail est composé
+L'infrastucture de travail est composée de la manière suivante :
+* Une machine hôte d'IP `192.168.8.53` sous Windows
+* Une machine attaquant d'IP `192.168.9.132` et d'adresse MAC `08:00:27:9f:ae:7e` sous Ubuntu Server 16.04
+* Une machine cible d'IP `192.168.9.133` et d'adresse MAC `08:00:27:5a:52:a1` sous Ubuntu Server 16.04
 
 ## Rappel théoriques sur TCP/IP
 
