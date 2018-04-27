@@ -28,7 +28,7 @@ Afin de mettre en avant le principe d'une connexion UDP, on peut par exemple uti
 
 Avec cette commande je vais donc tester l'ouverture d'un port sur différentes cibles. Dans un premier temps je vais tester l'ouverture du prot TCP/UDP 991 chez Google avec la commande suivante :
 
-```bash
+```console
 sudo nmap -sU google.fr -p 991
 ```
 
@@ -46,7 +46,7 @@ On remarque bien que le port est ouvert, c'est la ligne `991/udp open|filtered u
 
 Dans un second temps je vais tester le même port mais sur la machine virtuelle victime. La commande est la même, seul l'adresse cible change :
 
-```bash
+```console
 sudo nmap -sU 192.168.9.133 -p 991
 ```
 Le résultat de la commande est le suivant :
@@ -80,7 +80,7 @@ L'établissement d'une connexion TCP entre deux hôtes se déroule selon un hand
 
 Pour démontrer le fonctionnement de TCP et son **3 Way Wandshake**, j'ai effectué une requête HTTP avec la commande ``curl``. 
 
-```bash
+```console
 curl dreamzite.com -p 443
 ```
 
@@ -98,6 +98,9 @@ Le résultat de cette commande peut être capturé dans Wireshark. On voit donc 
 paragraphes suivants de la partie usage3 , tout le paragraphe Interactive tutorial jusqu'à
 Send and receive in a loop inclu. Pour tester, forgez quelques paquets, capturez les trames
 et observez le résultat. Décrivez vos manipulations._**
+
+a. Test
+b. Tests
 
 2. Réalisation d'une connexion TCP
 
