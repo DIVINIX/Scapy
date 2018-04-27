@@ -147,12 +147,14 @@ Par exemple j'ai lancé le sniff avec comme filtre l'IP de l'attaquant grâce à
 
 Le résultat est le suivant :
 
-
 ![alt text][sniff_ping]
 
 [sniff_ping]: https://github.com/DIVINIX/Scapy/blob/master/Images/sniff_ping_2.PNG "Sniff ping"
 
 On voit bien que deux paquets on été sniffé par Scapy.
+
+
+#### e. Send and receive in a loop
 
 ### 2. Réalisation d'une connexion TCP
 
