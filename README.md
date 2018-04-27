@@ -107,9 +107,23 @@ Scapy permet la génération de plusieurs paquets très facilement. Ci-dessous s
 
 ![alt text][set_packets]
 
-[set_packets]: https://github.com/DIVINIX/Scapy/blob/master/Images/set_packets.PNG "Generating paquets"
+[set_packets]: https://github.com/DIVINIX/Scapy/blob/master/Images/set_packets.PNG "Generating packets"
 
 L'un des avantages est de pouvoir forger un certain nombre de paquets de manière automatique. Par exemple ici l'idée était de forger des paquets TCP de différents ports pour différentes adresses. Dans un premier temps récupère les adresses IP de la cilbe. Ensuite on créer une trame TCP pour les ports 80 et 443. Pour finir on génère automatiquement les paquets associés aux IP et aux ports TCP. Cela nous donne des paquets de la forme : Adresse IP 1 + Port 80 | Adresse IP 1 + Port 443 | Adresse IP 2 + Port 80 | Adresse IP 2 + Port 443 [...]. Pour chaque adresse IP on lui associe un des deux ports de la trame TCP.
+
+  2. Send and receive packets (sr)
+  
+Les commandes `send()` et `sendp()` ne permettent pas de récupérer de retour, en effet elles ne servent qu'à envoyer. C'est pourquoi il existe des commandes comme `srp()`, `sr` et `sr1()` qui retournent des paquetes. Les deux premières fonction retourne deux objets, le premier contient les paquets émis et leur réponses et l'autre paquet contient les paquetes sans réponse. La commande `sr1()` ne retourne que les paquets émis.
+
+L'envoi de paquets est très simple il se fait de la manière suivante : `p = sr1(IP(dst="www.slashdot.org")/ICMP()/"XXXXXXXXXXX")`
+
+Le résultat est le suivant :
+
+![alt text][sr_packets]
+
+[sr_packets]: https://github.com/DIVINIX/Scapy/blob/master/Images/sr_cmd.PNG "Send and receive packets"
+
+On voit bien que le paquet a été envoyé et qu'une réponse nous est retournée.
 
 2. Réalisation d'une connexion TCP
 
